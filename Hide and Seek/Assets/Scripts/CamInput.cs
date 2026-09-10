@@ -9,6 +9,10 @@ public class CamInput : MonoBehaviour
     public bool Cam2 { get; private set; }
     public bool Cam3 { get; private set; }
     public bool Cam4 { get; private set; }
+
+    public bool Power {  get; private set; }
+
+    public Vector2 RotateInput { get; private set; }
     private void Awake()
     {
         controls = new InputSystem_Actions();
@@ -19,11 +23,25 @@ public class CamInput : MonoBehaviour
         controls.Cameras.Camera2.performed += OnCam2;
         controls.Cameras.Camera3.performed += OnCam3;
         controls.Cameras.Camera4.performed += OnCam4;
+        controls.Cameras.Power.performed += OnPower;
+        controls.Cameras.CameraRotation.performed += OnRotate;
 
         controls.Enable();
     }
+    private void OnRotate(InputAction.CallbackContext ctx)
+    {
+        RotateInput = ctx.ReadValue<Vector2>();
+    }
     private void OnDisable()
     {
+        //controls.Cameras.Camera1.performed -= OnCam1;
+        //controls.Cameras.Camera2.performed -= OnCam2;
+        //controls.Cameras.Camera3.performed -= OnCam3;
+        //controls.Cameras.Camera4.performed -= OnCam4;
+        //controls.Cameras.Power.performed -= OnPower;
+        //controls.Cameras.CameraRotation.performed -= OnRotate;
+        //controls.Cameras.CameraRotation.canceled -= OnRotate;
+
         controls.Disable();
     }
     private void OnCam1(InputAction.CallbackContext ctx)
@@ -42,6 +60,11 @@ public class CamInput : MonoBehaviour
     {
         Cam4 = true;
     }
+    private void OnPower(InputAction.CallbackContext ctx)
+    {
+        Power = !Power;
+    }
+
     private void LateUpdate()
     {
         Cam1 = false;

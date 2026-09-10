@@ -126,6 +126,24 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera Rotation"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""5df1f643-7a2d-4bce-bdce-a867266338e2"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Power"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3e7bed8-ec0a-46b1-a0dc-b10392bd94e9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -133,6 +151,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""70438045-e391-4e5d-acf4-143ac8614cb8"",
                     ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""467c2c67-13c4-498a-967c-dc0a9ed10896"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -153,8 +182,30 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""83d44290-04cf-4aab-8a8d-7736383f01c2"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera 2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""547118f1-11e7-44eb-8eff-fb0b9c9268a5"",
                     ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera 3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1ac5326-d92c-45dc-ba81-c3e5077c43d2"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -170,6 +221,61 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Camera 4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef4d29d9-879f-4298-a922-dd415711b391"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera 4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e3afd14-01a6-4416-a4c7-e77830303c0e"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""450a4855-dd12-4a05-aa27-d913be339b6d"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c7b5924-c79f-4a89-b984-677fc8b01cb5"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Power"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0057534f-6647-4287-9d91-5cce004b6330"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Power"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -245,6 +351,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Cameras_Camera2 = m_Cameras.FindAction("Camera 2", throwIfNotFound: true);
         m_Cameras_Camera3 = m_Cameras.FindAction("Camera 3", throwIfNotFound: true);
         m_Cameras_Camera4 = m_Cameras.FindAction("Camera 4", throwIfNotFound: true);
+        m_Cameras_CameraRotation = m_Cameras.FindAction("Camera Rotation", throwIfNotFound: true);
+        m_Cameras_Power = m_Cameras.FindAction("Power", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -329,6 +437,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Cameras_Camera2;
     private readonly InputAction m_Cameras_Camera3;
     private readonly InputAction m_Cameras_Camera4;
+    private readonly InputAction m_Cameras_CameraRotation;
+    private readonly InputAction m_Cameras_Power;
     /// <summary>
     /// Provides access to input actions defined in input action map "Cameras".
     /// </summary>
@@ -356,6 +466,14 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Cameras/Camera4".
         /// </summary>
         public InputAction @Camera4 => m_Wrapper.m_Cameras_Camera4;
+        /// <summary>
+        /// Provides access to the underlying input action "Cameras/CameraRotation".
+        /// </summary>
+        public InputAction @CameraRotation => m_Wrapper.m_Cameras_CameraRotation;
+        /// <summary>
+        /// Provides access to the underlying input action "Cameras/Power".
+        /// </summary>
+        public InputAction @Power => m_Wrapper.m_Cameras_Power;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -394,6 +512,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Camera4.started += instance.OnCamera4;
             @Camera4.performed += instance.OnCamera4;
             @Camera4.canceled += instance.OnCamera4;
+            @CameraRotation.started += instance.OnCameraRotation;
+            @CameraRotation.performed += instance.OnCameraRotation;
+            @CameraRotation.canceled += instance.OnCameraRotation;
+            @Power.started += instance.OnPower;
+            @Power.performed += instance.OnPower;
+            @Power.canceled += instance.OnPower;
         }
 
         /// <summary>
@@ -417,6 +541,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Camera4.started -= instance.OnCamera4;
             @Camera4.performed -= instance.OnCamera4;
             @Camera4.canceled -= instance.OnCamera4;
+            @CameraRotation.started -= instance.OnCameraRotation;
+            @CameraRotation.performed -= instance.OnCameraRotation;
+            @CameraRotation.canceled -= instance.OnCameraRotation;
+            @Power.started -= instance.OnPower;
+            @Power.performed -= instance.OnPower;
+            @Power.canceled -= instance.OnPower;
         }
 
         /// <summary>
@@ -550,5 +680,19 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCamera4(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Camera Rotation" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCameraRotation(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Power" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPower(InputAction.CallbackContext context);
     }
 }
