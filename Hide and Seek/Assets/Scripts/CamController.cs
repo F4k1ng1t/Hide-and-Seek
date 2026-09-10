@@ -68,6 +68,7 @@ public class CamController : MonoBehaviour
             }
             if (c.Cam1)
             {
+
                 Debug.Log("cam1");
                 ChangeRenderedCamera(Cams.Cam1);
 
