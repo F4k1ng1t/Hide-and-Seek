@@ -144,6 +144,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""523c2cd3-a666-4e5a-8705-4bb223b833a1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -278,6 +287,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""Power"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d1ce314a-b5a8-4e12-b15b-3d2f12f9d56f"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36a9223b-e9fd-4675-99d8-f1b172718bf0"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -353,6 +384,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Cameras_Camera4 = m_Cameras.FindAction("Camera 4", throwIfNotFound: true);
         m_Cameras_CameraRotation = m_Cameras.FindAction("Camera Rotation", throwIfNotFound: true);
         m_Cameras_Power = m_Cameras.FindAction("Power", throwIfNotFound: true);
+        m_Cameras_Fire = m_Cameras.FindAction("Fire", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -439,6 +471,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Cameras_Camera4;
     private readonly InputAction m_Cameras_CameraRotation;
     private readonly InputAction m_Cameras_Power;
+    private readonly InputAction m_Cameras_Fire;
     /// <summary>
     /// Provides access to input actions defined in input action map "Cameras".
     /// </summary>
@@ -474,6 +507,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Cameras/Power".
         /// </summary>
         public InputAction @Power => m_Wrapper.m_Cameras_Power;
+        /// <summary>
+        /// Provides access to the underlying input action "Cameras/Fire".
+        /// </summary>
+        public InputAction @Fire => m_Wrapper.m_Cameras_Fire;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -518,6 +555,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Power.started += instance.OnPower;
             @Power.performed += instance.OnPower;
             @Power.canceled += instance.OnPower;
+            @Fire.started += instance.OnFire;
+            @Fire.performed += instance.OnFire;
+            @Fire.canceled += instance.OnFire;
         }
 
         /// <summary>
@@ -547,6 +587,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Power.started -= instance.OnPower;
             @Power.performed -= instance.OnPower;
             @Power.canceled -= instance.OnPower;
+            @Fire.started -= instance.OnFire;
+            @Fire.performed -= instance.OnFire;
+            @Fire.canceled -= instance.OnFire;
         }
 
         /// <summary>
@@ -694,5 +737,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPower(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Fire" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFire(InputAction.CallbackContext context);
     }
 }

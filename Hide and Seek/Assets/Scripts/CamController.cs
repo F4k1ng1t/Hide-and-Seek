@@ -18,11 +18,14 @@ public class CamController : MonoBehaviour
 
     public List<Camera> cameraList = new List<Camera>();
     public RenderTexture camTexture;
+    public Canvas canvas;
 
     private float rotationX;
     private float rotationY;
 
     private bool wasPowerOn = false;
+
+    public float laserRange = 100f;
 
     private void Start()
     {
@@ -31,6 +34,8 @@ public class CamController : MonoBehaviour
         {
             camera.enabled = false;
         }
+        canvas.worldCamera = cameraList[0];
+        canvas.planeDistance = 0.1f;
     }
     void ClearCameraFeed()
     {
@@ -38,6 +43,7 @@ public class CamController : MonoBehaviour
         {
             cameraList[i].targetTexture = null;
             cameraList[i].enabled = false;
+            canvas.worldCamera = cameraList[0];
         }
     }
     void ChangeRenderedCamera(Cams camera)
@@ -45,6 +51,8 @@ public class CamController : MonoBehaviour
         ClearCameraFeed();
         cameraList[(int)camera].enabled = true;
         cameraList[(int)camera].targetTexture = camTexture;
+        canvas.worldCamera = cameraList[(int)camera];
+        canvas.planeDistance = 1f;
         currentCam = camera;
 
     }
@@ -57,6 +65,21 @@ public class CamController : MonoBehaviour
         rotationY = Mathf.Clamp(rotationY, -45f, 45f);
 
         cameraList[(int)camera].transform.localRotation = Quaternion.Euler(rotationX, rotationY, 0f);
+    }
+    void FireCameraLaser()
+    {
+        Camera cam = cameraList[(int)currentCam];
+        Vector3 origin = cam.transform.position;
+        Vector3 direction = cam.transform.forward;
+
+        RaycastHit hit;
+        Debug.DrawRay(origin, direction * laserRange, Color.red);
+        if(Physics.Raycast(origin, direction, out hit, laserRange) && hit.transform.TryGetComponent<EnemyBehaviour>(out EnemyBehaviour enemy))
+        {
+            Debug.Log("Hit!");
+            enemy.Die();
+        }
+
     }
     void Update()
     {
@@ -88,6 +111,11 @@ public class CamController : MonoBehaviour
                 Debug.Log("cam4");
                 ChangeRenderedCamera(Cams.Cam4);
             }
+            if(c.Fire)
+            {
+                Debug.Log("Fire!");
+                FireCameraLaser();
+            }
             switch (currentCam)
             {
                 case Cams.Cam1:
@@ -108,6 +136,7 @@ public class CamController : MonoBehaviour
                     break;
 
             }
+
         }
         else
         {
