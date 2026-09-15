@@ -19,6 +19,7 @@ public class CamController : MonoBehaviour
     public List<Camera> cameraList = new List<Camera>();
     public RenderTexture camTexture;
     public Canvas canvas;
+    public CamStaticUI camStatic;
 
     private float rotationX;
     private float rotationY;
@@ -49,6 +50,7 @@ public class CamController : MonoBehaviour
     void ChangeRenderedCamera(Cams camera)
     {
         ClearCameraFeed();
+        StartCoroutine(camStatic.ActivateCamStatic());
         cameraList[(int)camera].enabled = true;
         cameraList[(int)camera].targetTexture = camTexture;
         canvas.worldCamera = cameraList[(int)camera];
