@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Camera 5",
+                    "type": "Button",
+                    "id": "d55bc7b0-16d6-4e86-8af2-82c38cf7112e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Camera Rotation",
                     "type": "PassThrough",
                     "id": "5df1f643-7a2d-4bce-bdce-a867266338e2",
@@ -221,6 +230,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "18f5b863-5928-49d9-9241-3767f3719f1a",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera 5",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

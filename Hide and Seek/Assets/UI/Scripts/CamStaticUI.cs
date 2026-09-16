@@ -6,8 +6,9 @@ public class CamStaticUI : MonoBehaviour
 {
     // Change this from GameObject to Image
     private Image staticImage;
-
     public float staticDuration = 1.0f;
+
+    public CamController camController;
     void Start()
     {
         staticImage = GetComponent<Image>();
@@ -21,10 +22,16 @@ public class CamStaticUI : MonoBehaviour
     {
         if (staticImage != null)
         {
-            Debug.Log("this is happening");
             staticImage.enabled = true;
             yield return new WaitForSeconds(staticDuration);
             staticImage.enabled = false;
         }
+    }
+    public IEnumerator PowerOff()
+    {
+        staticImage.enabled = true;
+        yield return new WaitForSeconds(staticDuration);
+        staticImage.enabled = false;
+        camController.ClearCameraFeed();
     }
 }

@@ -10,7 +10,7 @@ public class CamInput : MonoBehaviour
     public bool Cam3 { get; private set; }
     public bool Cam4 { get; private set; }
 
-    public bool Power { get; private set; }
+    public bool Cam5 { get; private set; }
     public bool Fire { get; private set; }
 
     public Vector2 RotateInput { get; private set; }
@@ -26,7 +26,7 @@ public class CamInput : MonoBehaviour
         controls.Cameras.Camera2.performed += OnCam2;
         controls.Cameras.Camera3.performed += OnCam3;
         controls.Cameras.Camera4.performed += OnCam4;
-        controls.Cameras.Power.performed += OnPower;
+        controls.Cameras.Camera5.performed += OnCam5;
         controls.Cameras.CameraRotation.performed += OnRotate;
 
         controls.Cameras.Fire.performed += OnFire;
@@ -40,7 +40,7 @@ public class CamInput : MonoBehaviour
         controls.Cameras.Camera2.performed -= OnCam2;
         controls.Cameras.Camera3.performed -= OnCam3;
         controls.Cameras.Camera4.performed -= OnCam4;
-        controls.Cameras.Power.performed -= OnPower;
+        controls.Cameras.Camera5.performed -= OnCam5;
         controls.Cameras.CameraRotation.performed -= OnRotate;
 
         controls.Cameras.Fire.performed -= OnFire;
@@ -67,12 +67,10 @@ public class CamInput : MonoBehaviour
     {
         Cam4 = true;
     }
-
-    private void OnPower(InputAction.CallbackContext ctx)
+    private void OnCam5(InputAction.CallbackContext ctx)
     {
-        Power = !Power;
+        Cam5 = true;
     }
-
     private void OnFire(InputAction.CallbackContext ctx)
     {
         Fire = true;
@@ -89,6 +87,7 @@ public class CamInput : MonoBehaviour
         Cam2 = false;
         Cam3 = false;
         Cam4 = false;
+        Cam5 = false;
         Fire = false;
     }
 }

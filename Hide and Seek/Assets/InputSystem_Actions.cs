@@ -128,6 +128,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Camera 5"",
+                    ""type"": ""Button"",
+                    ""id"": ""d55bc7b0-16d6-4e86-8af2-82c38cf7112e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Camera Rotation"",
                     ""type"": ""PassThrough"",
                     ""id"": ""5df1f643-7a2d-4bce-bdce-a867266338e2"",
@@ -309,6 +318,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18f5b863-5928-49d9-9241-3767f3719f1a"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera 5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -382,6 +402,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Cameras_Camera2 = m_Cameras.FindAction("Camera 2", throwIfNotFound: true);
         m_Cameras_Camera3 = m_Cameras.FindAction("Camera 3", throwIfNotFound: true);
         m_Cameras_Camera4 = m_Cameras.FindAction("Camera 4", throwIfNotFound: true);
+        m_Cameras_Camera5 = m_Cameras.FindAction("Camera 5", throwIfNotFound: true);
         m_Cameras_CameraRotation = m_Cameras.FindAction("Camera Rotation", throwIfNotFound: true);
         m_Cameras_Power = m_Cameras.FindAction("Power", throwIfNotFound: true);
         m_Cameras_Fire = m_Cameras.FindAction("Fire", throwIfNotFound: true);
@@ -469,6 +490,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Cameras_Camera2;
     private readonly InputAction m_Cameras_Camera3;
     private readonly InputAction m_Cameras_Camera4;
+    private readonly InputAction m_Cameras_Camera5;
     private readonly InputAction m_Cameras_CameraRotation;
     private readonly InputAction m_Cameras_Power;
     private readonly InputAction m_Cameras_Fire;
@@ -499,6 +521,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Cameras/Camera4".
         /// </summary>
         public InputAction @Camera4 => m_Wrapper.m_Cameras_Camera4;
+        /// <summary>
+        /// Provides access to the underlying input action "Cameras/Camera5".
+        /// </summary>
+        public InputAction @Camera5 => m_Wrapper.m_Cameras_Camera5;
         /// <summary>
         /// Provides access to the underlying input action "Cameras/CameraRotation".
         /// </summary>
@@ -549,6 +575,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Camera4.started += instance.OnCamera4;
             @Camera4.performed += instance.OnCamera4;
             @Camera4.canceled += instance.OnCamera4;
+            @Camera5.started += instance.OnCamera5;
+            @Camera5.performed += instance.OnCamera5;
+            @Camera5.canceled += instance.OnCamera5;
             @CameraRotation.started += instance.OnCameraRotation;
             @CameraRotation.performed += instance.OnCameraRotation;
             @CameraRotation.canceled += instance.OnCameraRotation;
@@ -581,6 +610,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Camera4.started -= instance.OnCamera4;
             @Camera4.performed -= instance.OnCamera4;
             @Camera4.canceled -= instance.OnCamera4;
+            @Camera5.started -= instance.OnCamera5;
+            @Camera5.performed -= instance.OnCamera5;
+            @Camera5.canceled -= instance.OnCamera5;
             @CameraRotation.started -= instance.OnCameraRotation;
             @CameraRotation.performed -= instance.OnCameraRotation;
             @CameraRotation.canceled -= instance.OnCameraRotation;
@@ -723,6 +755,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCamera4(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Camera 5" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCamera5(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Camera Rotation" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
