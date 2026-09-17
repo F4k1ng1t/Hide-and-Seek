@@ -123,7 +123,7 @@ public class CamController : MonoBehaviour
 
         RaycastHit hit;
         Debug.DrawRay(origin, direction * laserRange, Color.red);
-        if (Physics.Raycast(origin, direction, out hit, laserRange) && hit.transform.TryGetComponent<EnemyBehaviour>(out EnemyBehaviour enemy))
+        if (Physics.Raycast(origin, direction, out hit, laserRange) && hit.transform.TryGetComponent<Enemy>(out Enemy enemy))
         {
             Debug.Log("Hit!");
             enemy.Die();
@@ -136,7 +136,7 @@ public class CamController : MonoBehaviour
 
         if (hasBattery)
         {
-            // Camera is powered and has battery
+            // Camera has battery
 
             if (c.Cam1)
             {

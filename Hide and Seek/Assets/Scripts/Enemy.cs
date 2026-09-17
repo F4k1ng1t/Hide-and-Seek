@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyBehaviour : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
 
     public void Die()
