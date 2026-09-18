@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 public class BatteryUI : MonoBehaviour
 {
     public List<Image> percentBlocks = new List<Image>();
@@ -45,11 +46,21 @@ public class BatteryUI : MonoBehaviour
                     }
                 }
             }
-            else if(frames == 60f && Battery <= 5)
+            else if(Battery <= 5)
             {
-                Battery--;
-                percentBlocks[Battery / 25].enabled = false;
-                frames = 0f;
+                if(frames == 30f)
+                {
+                    percentBlocks[(Battery / 25)].enabled = !percentBlocks[(Battery / 25)].enabled;
+                    
+                }
+                if(frames == 60f)
+                {
+                    Battery--;
+                    percentBlocks[(Battery / 25)].enabled = !percentBlocks[(Battery / 25)].enabled;
+                    percentBlocks[Battery / 25].color = Color.red;
+                    frames = 0f;
+                }
+                
             }
         }
     }
