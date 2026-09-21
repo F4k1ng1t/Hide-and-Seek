@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemyManager : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
     public List<GameObject> rooms = new List<GameObject>();
@@ -10,6 +10,9 @@ public class EnemySpawner : MonoBehaviour
     public float enemyHalfHeight = 1f;
     public float roomRadius = 5f;
     private int currentRoomIndex = 0;
+
+    [Range(0f, 1f)]
+    public float enemyMoveThreshold;
     void Start()
     {
         Spawn();
@@ -18,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
         Spawn();
         Spawn();
     }
-    Vector3 RandomizeEnemyPosition()
+    public Vector3 RandomizeEnemyPosition()
     {
         currentRoomIndex = Random.Range(0, rooms.Count);
         GameObject room = rooms[currentRoomIndex];
@@ -36,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
         if (rooms.Count == camController.cameraList.Count)
         {
             Vector3 direction = camController.cameraList[currentRoomIndex].transform.position - position;
-            // direction.y = 0; 
+            direction.y = 0; 
             return Quaternion.LookRotation(direction);
         }
         
@@ -51,6 +54,13 @@ public class EnemySpawner : MonoBehaviour
         Vector3 randomizedPosition = RandomizeEnemyPosition();
         Quaternion look = LookAtCamera(randomizedPosition);
         Enemy enemy = Instantiate(enemyPrefab, randomizedPosition, look).GetComponent<Enemy>();
+        InitializeEnemy(enemy);
+    }
+    void InitializeEnemy(Enemy enemy)
+    {
+        enemy.currentRoomIndex = currentRoomIndex;
+        enemy.manager = this;
+        enemy.moveThreshold = enemyMoveThreshold;
         enemies.Add(enemy);
     }
     // Update is called once per frame

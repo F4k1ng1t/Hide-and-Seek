@@ -1968,6 +1968,7 @@ MonoBehaviour:
   camController: {fileID: 362187554}
   enemyHalfHeight: 1
   roomRadius: 5
+  enemyMoveThreshold: 0.5
 --- !u!4 &1342009586
 Transform:
   m_ObjectHideFlags: 0
