@@ -50,6 +50,9 @@ public class CamController : MonoBehaviour
 
     public bool powered { get; private set; }
 
+    [HideInInspector]
+    public bool lightIsOn = false;
+
     private void Start()
     {
         c = GetComponent<CamInput>();
@@ -98,7 +101,27 @@ public class CamController : MonoBehaviour
             currentCam = camera;
         }
     }
-
+    public Light FindCamLight(Cams camera)
+    {
+        if (cameraList[(int)camera].gameObject.GetComponentInChildren<Light>() == null)
+        {
+            Debug.Log("Light is missing.");
+            return null;
+        }
+        return cameraList[(int)camera].gameObject.GetComponentInChildren<Light>();
+    }
+    public void TurnOnLight(Cams camera)
+    {
+        
+        Light light = FindCamLight(camera);
+        light.enabled = true;
+    }
+    public void TurnOffLight(Cams camera)
+    {
+        
+        Light light = FindCamLight((Cams)camera);
+        light.enabled = false;
+    }
     void RotateCamera(Cams camera)
     {
         // Prevent trying to rotate if the cameras are currently turned off
@@ -133,7 +156,7 @@ public class CamController : MonoBehaviour
     void Update()
     {
         bool hasBattery = batteryUI.Battery > 0;
-
+        
         if (hasBattery)
         {
             // Camera has battery
@@ -162,7 +185,19 @@ public class CamController : MonoBehaviour
             {
                 FireCameraLaser();
             }
-
+            if (currentCam != Cams.Off)
+            {
+                if (c.Flashlight && !lightIsOn)
+                {
+                    TurnOnLight(currentCam);
+                    lightIsOn = true;
+                }
+                else if (!c.Flashlight && lightIsOn)
+                {
+                    TurnOffLight(currentCam);
+                    lightIsOn = false;
+                }
+            }
             RotateCamera(currentCam);
         }
         else

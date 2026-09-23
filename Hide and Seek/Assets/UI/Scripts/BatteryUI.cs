@@ -20,6 +20,7 @@ public class BatteryUI : MonoBehaviour
     {
         if(camController.powered && Battery > 0)
         {
+            
             frames++;
             if (Battery > 5)
             {
@@ -44,6 +45,10 @@ public class BatteryUI : MonoBehaviour
                     {
                         percentBlocks[Battery / 25].enabled = false;
                     }
+                    if (camController.lightIsOn)
+                    {
+                        Battery--;
+                    }
                 }
             }
             else if(Battery <= 5)
@@ -56,9 +61,14 @@ public class BatteryUI : MonoBehaviour
                 if(frames == 60f)
                 {
                     Battery--;
+                    if (camController.lightIsOn)
+                    {
+                        Battery--;
+                    }
                     percentBlocks[(Battery / 25)].enabled = !percentBlocks[(Battery / 25)].enabled;
                     percentBlocks[Battery / 25].color = Color.red;
                     frames = 0f;
+                    
                 }
                 
             }
