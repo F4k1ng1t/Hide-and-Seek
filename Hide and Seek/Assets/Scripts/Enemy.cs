@@ -38,6 +38,17 @@ public class Enemy : MonoBehaviour
             currentRoomIndex -= 1;
         }
         
+        UpdateEnemyPosition();
+        
+    }
+    void UpdateEnemyPosition()
+    {
+        currentRoomIndex = Mathf.Clamp(currentRoomIndex, 0, manager.rooms.Count - 1);
+        GameObject room = manager.rooms[currentRoomIndex];
+        float randomX = room.transform.position.x + Random.Range(-manager.roomRadius, manager.roomRadius);
+        float randomZ = room.transform.position.z + Random.Range(-manager.roomRadius, manager.roomRadius);
+
+        gameObject.transform.position = new Vector3(randomX, gameObject.transform.position.y, randomZ);
     }
     void MoveToOffice()
     {
