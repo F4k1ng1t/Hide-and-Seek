@@ -70,6 +70,7 @@ public class CamController : MonoBehaviour
         {
             cameraList[i].targetTexture = null;
             cameraList[i].enabled = false;
+            cameraList[i].GetComponentInChildren<Light>().enabled = false;
         }
         if(camTexture != null)
         {

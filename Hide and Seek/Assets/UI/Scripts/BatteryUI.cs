@@ -1,15 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 public class BatteryUI : MonoBehaviour
 {
     public List<Image> percentBlocks = new List<Image>();
 
-    public int Battery = 100;
+    public float Battery = 100f;
     public CamController camController;
+    [Range(0,1000)]
+    public int blinkRate = 30;
+    public int lowBatteryThreshold = 5;
 
-    private float frames = 0f;
+    private int frames = 0;
     void Start()
     {
 
@@ -18,56 +20,57 @@ public class BatteryUI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        int batteryInt = Mathf.CeilToInt(Battery);
         if(camController.powered && Battery > 0)
         {
             
             frames++;
-            if (Battery > 5)
+            if (Battery > lowBatteryThreshold)
             {
-                if (frames == 30f)
+                if (frames == blinkRate)
                 {
                     if (Battery % 25 < 10 && Battery % 25 != 0 && frames > 5f)
                     {
-                        percentBlocks[(Battery / 25)].enabled = !percentBlocks[(Battery / 25)].enabled;
+                        percentBlocks[(batteryInt / 25)].enabled = !percentBlocks[(batteryInt / 25)].enabled;
                     }
 
                 }
-                if (frames == 60f)
+                if (frames == blinkRate * 2)
                 {
                     Battery--;
-                    frames = 0f;
-                    Debug.Log(Battery / 25);
+                    frames = 0;
+                    Debug.Log(batteryInt / 25);
                     if (Battery % 25 < 10 && Battery % 25 != 0 && Battery > 5)
                     {
-                        percentBlocks[(Battery / 25)].enabled = !percentBlocks[(Battery / 25)].enabled;
+                        percentBlocks[(batteryInt / 25)].enabled = !percentBlocks[(batteryInt / 25)].enabled;
                     }
                     else if (Battery % 25 == 0)
                     {
-                        percentBlocks[Battery / 25].enabled = false;
+                        percentBlocks[batteryInt / 25].enabled = false;
                     }
                     if (camController.lightIsOn)
                     {
-                        Battery--;
+                        Battery -= 0.5f;
                     }
                 }
             }
-            else if(Battery <= 5)
+            else if(Battery <= lowBatteryThreshold)
             {
-                if(frames == 30f)
+                if(frames == blinkRate)
                 {
-                    percentBlocks[(Battery / 25)].enabled = !percentBlocks[(Battery / 25)].enabled;
+                    percentBlocks[(batteryInt / 25)].enabled = !percentBlocks[(batteryInt / 25)].enabled;
                     
                 }
-                if(frames == 60f)
+                if(frames == blinkRate * 2)
                 {
                     Battery--;
                     if (camController.lightIsOn)
                     {
-                        Battery--;
+                        Battery-= 0.5f;
                     }
-                    percentBlocks[(Battery / 25)].enabled = !percentBlocks[(Battery / 25)].enabled;
-                    percentBlocks[Battery / 25].color = Color.red;
-                    frames = 0f;
+                    percentBlocks[(batteryInt / 25)].enabled = !percentBlocks[(batteryInt / 25)].enabled;
+                    percentBlocks[batteryInt / 25].color = Color.red;
+                    frames = 0;
                     
                 }
                 

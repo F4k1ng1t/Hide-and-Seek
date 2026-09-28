@@ -2510,6 +2510,8 @@ MonoBehaviour:
   - {fileID: 938296927}
   Battery: 100
   camController: {fileID: 362187554}
+  blinkRate: 100
+  lowBatteryThreshold: 5
 --- !u!114 &1346539130
 MonoBehaviour:
   m_ObjectHideFlags: 0
