@@ -1,5 +1,3 @@
-using System;
-using System.Diagnostics;
 using System.IO.Ports;
 using System.Threading;
 using UnityEngine;
@@ -65,7 +63,7 @@ public class SerialInput : MonoBehaviour
 
             Debug.Log("[Serial] Port " + portName + " opened.");
         }
-        catch (Exception e)
+        catch (System.Exception e)
         {
             Debug.LogError("[Serial] Failed to open " + portName + ": " + e.Message);
         }
@@ -84,11 +82,11 @@ public class SerialInput : MonoBehaviour
                     latestLine = line;  // store for main thread
                 }
             }
-            catch (TimeoutException)
+            catch (System.TimeoutException)
             {
                 // expected, ignore
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
                 Debug.LogWarning("[Serial Thread] Error: " + e.Message);
             }
@@ -97,6 +95,7 @@ public class SerialInput : MonoBehaviour
 
     private void ParseLine(string line)
     {
+        //This parses their specific code, see arduino. We will need to edit this to match our specific needs
         if (!line.Contains("|"))
             return;
 
