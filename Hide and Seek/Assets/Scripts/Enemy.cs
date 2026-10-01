@@ -5,7 +5,9 @@ public class Enemy : MonoBehaviour
     public int currentRoomIndex;
     public EnemyManager manager;
     public float moveThreshold;
-    bool canMove = true;
+    bool inOffice = false;
+    bool enemyVisible = false;
+    int visibilityStacks = 0;
     int moveFrames = 0;
     public void Die()
     {
@@ -16,13 +18,21 @@ public class Enemy : MonoBehaviour
         float moveChance = Random.value;
         if (moveChance >= moveThreshold)
         {
-            ForwardOrBack();
+            if (!inOffice)
+            {
+                ForwardOrBack();
+            }
+            else
+            {
+                Jumpscare();
+            }
         }
+
     }
     void ForwardOrBack()
     {
         float forwardOrBack = Random.value;
-        if (forwardOrBack >= 0.5f && canMove)
+        if (forwardOrBack >= 0.5f)
         {
             currentRoomIndex += 2;
             if (currentRoomIndex > manager.rooms.Count - 1)
@@ -37,9 +47,14 @@ public class Enemy : MonoBehaviour
         {
             currentRoomIndex -= 1;
         }
-        
+
         UpdateEnemyPosition();
-        
+
+    }
+    void Jumpscare()
+    {
+        //Jumpscare functionality
+        Debug.Log("GRAHHHHH");
     }
     void UpdateEnemyPosition()
     {
@@ -52,7 +67,7 @@ public class Enemy : MonoBehaviour
     }
     void MoveToOffice()
     {
-        canMove = false;
+        inOffice = true;
     }
     void Start()
     {

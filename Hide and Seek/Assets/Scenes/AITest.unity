@@ -433,7 +433,7 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
-  m_Range: 100
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -750,7 +750,7 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
-  m_Range: 100
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1459,7 +1459,7 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
-  m_Range: 100
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1555,6 +1555,7 @@ GameObject:
   - component: {fileID: 718133368}
   - component: {fileID: 718133370}
   - component: {fileID: 718133369}
+  - component: {fileID: 718133371}
   m_Layer: 0
   m_Name: Cam5
   m_TagString: Untagged
@@ -1673,6 +1674,24 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &718133371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718133367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b6a41103c9b15449e6af1336aa05d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camController: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  radius: 0
+  angle: 0
 --- !u!1 &731246422
 GameObject:
   m_ObjectHideFlags: 0
@@ -2101,6 +2120,7 @@ GameObject:
   - component: {fileID: 995025117}
   - component: {fileID: 995025119}
   - component: {fileID: 995025118}
+  - component: {fileID: 995025120}
   m_Layer: 0
   m_Name: Cam3
   m_TagString: Untagged
@@ -2219,6 +2239,24 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &995025120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995025116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b6a41103c9b15449e6af1336aa05d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camController: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  radius: 0
+  angle: 0
 --- !u!1 &1060845384
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,7 +2325,7 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
-  m_Range: 100
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -2610,6 +2648,7 @@ GameObject:
   - component: {fileID: 1422886964}
   - component: {fileID: 1422886966}
   - component: {fileID: 1422886965}
+  - component: {fileID: 1422886967}
   m_Layer: 0
   m_Name: Cam2
   m_TagString: Untagged
@@ -2728,6 +2767,24 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1422886967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422886963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b6a41103c9b15449e6af1336aa05d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camController: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  radius: 0
+  angle: 0
 --- !u!1 &1509349984
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,6 +2871,7 @@ GameObject:
   - component: {fileID: 1547331850}
   - component: {fileID: 1547331853}
   - component: {fileID: 1547331851}
+  - component: {fileID: 1547331854}
   m_Layer: 0
   m_Name: Cam4
   m_TagString: Untagged
@@ -2932,6 +2990,24 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1547331854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547331849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b6a41103c9b15449e6af1336aa05d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camController: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  radius: 0
+  angle: 0
 --- !u!1 &1675349743
 GameObject:
   m_ObjectHideFlags: 0
@@ -3184,7 +3260,7 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
-  m_Range: 100
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -3248,6 +3324,7 @@ GameObject:
   - component: {fileID: 1730184802}
   - component: {fileID: 1730184804}
   - component: {fileID: 1730184803}
+  - component: {fileID: 1730184805}
   m_Layer: 0
   m_Name: Cam1
   m_TagString: Untagged
@@ -3366,6 +3443,24 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1730184805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730184801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b6a41103c9b15449e6af1336aa05d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camController: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  radius: 0
+  angle: 0
 --- !u!1 &1832509570
 GameObject:
   m_ObjectHideFlags: 0
