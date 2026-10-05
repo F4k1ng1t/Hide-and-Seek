@@ -4,10 +4,12 @@ public class EnemyDetection : MonoBehaviour
 {
     public CamController camController;
     public LayerMask targetMask;
+    public LayerMask obstructionMask;
     public float radius;
     public float angle;
     Light spotlight;
     bool detected = false;
+    public bool detecting = false;
     private void Start()
     {
         spotlight = GetComponentInChildren<Light>();
@@ -24,19 +26,26 @@ public class EnemyDetection : MonoBehaviour
         {
             //the only thing in the targetmask is the player, so we use the first index
             Transform target = rangeChecks[0].transform;
+            string a = "";
+            foreach (Collider obj in rangeChecks)
+            {
+                a += obj.gameObject.name + ", ";
+            }
+            Debug.Log(a);
             //establishes direction to enemy rotation to player location
             Vector3 directionToTarget = (target.position - transform.position).normalized;
 
             //gets the angle between the forward direction and the normalized vector to the target and compares it to half the angle we established in the beginning.
             //the angle is halved because half of the angle is to the left and half is to the right
-            if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
+            if (Vector3.Angle(this.transform.forward, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
                 //starts raycast from center of enemy, toward the player, from the distance to the player, only checking objects in the obstructionMask
-                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget))
+                if (!Physics.Raycast(this.transform.position, directionToTarget, distanceToTarget, obstructionMask))
                 {
-                    
+                    Debug.Log("BAKA LOOK AWAY");
+                    detected = true;
                 }
                 else
                     detected = false;
@@ -54,5 +63,25 @@ public class EnemyDetection : MonoBehaviour
         //{
         //    agent.destination = playerRef.transform.position;
         //}
+    }
+    void Update()
+    {
+        if (detecting)
+        {
+            FieldOfViewCheck();
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        if (detecting)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(this.transform.position, radius);
+        }
+        else
+        {
+
+        }
+
     }
 }

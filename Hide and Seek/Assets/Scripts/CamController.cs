@@ -71,6 +71,7 @@ public class CamController : MonoBehaviour
             cameraList[i].targetTexture = null;
             cameraList[i].enabled = false;
             cameraList[i].GetComponentInChildren<Light>().enabled = false;
+            cameraList[i].gameObject.GetComponent<EnemyDetection>().enabled = false;
         }
         if(camTexture != null)
         {
@@ -97,6 +98,7 @@ public class CamController : MonoBehaviour
         {
             cameraList[(int)camera].enabled = true;
             cameraList[(int)camera].targetTexture = camTexture;
+            cameraList[(int)camera].gameObject.GetComponent<EnemyDetection>().detecting = true;
             canvas.worldCamera = cameraList[(int)camera];
             canvas.planeDistance = 1f;
             currentCam = camera;
