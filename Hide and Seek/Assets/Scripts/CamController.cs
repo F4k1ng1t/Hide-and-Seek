@@ -48,6 +48,10 @@ public class CamController : MonoBehaviour
     private float rotationX;
     private float rotationY;
 
+    [Range(1f, 50f)]
+    [Tooltip("Camera Sensitivity, keep low for lower framerate")]
+    public float sensitivity;
+
     public bool powered { get; private set; }
 
     [HideInInspector]
@@ -130,8 +134,8 @@ public class CamController : MonoBehaviour
         // Prevent trying to rotate if the cameras are currently turned off
         if (camera == Cams.Off || (int)camera >= cameraList.Count) return;
 
-        rotationX -= c.RotateInput.y * 50f * Time.deltaTime;
-        rotationY += c.RotateInput.x * 50f * Time.deltaTime;
+        rotationX -= c.RotateInput.y * sensitivity * Time.deltaTime;
+        rotationY += c.RotateInput.x * sensitivity * Time.deltaTime;
 
         rotationX = Mathf.Clamp(rotationX, -cameraClamp, cameraClamp);
         rotationY = Mathf.Clamp(rotationY, -cameraClamp, cameraClamp);
