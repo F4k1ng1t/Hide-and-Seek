@@ -25,7 +25,7 @@ public class ESP32DisplaySender : MonoBehaviour
     bool waitingForESP32;
     bool readbackPending;
 
-    static readonly byte[] Magic = { 0xAA, 0x55, 0xAA, 0x55 };
+    static readonly byte[] Magic = { 0xAA, 0x55, 0xAA, 0x55 }; //tf????
     readonly byte[] sizeBytes = new byte[4];
 
     void Start()
@@ -51,21 +51,28 @@ public class ESP32DisplaySender : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("Check 1");
         if (serialPort == null || !serialPort.IsOpen)
             return;
 
+        Debug.Log("Check 2");
         if (displayTexture == null)
             return;
 
+        Debug.Log("Check 3");
         CheckESP32();
 
+        Debug.Log("Waiting: " + waitingForESP32);
+        Debug.Log("readback: " + readbackPending);
         if (waitingForESP32 || readbackPending)
             return;
 
+        Debug.Log("Check 4");
         frameTimer += Time.deltaTime;
 
         if (frameTimer >= 1f / targetFPS)
         {
+            Debug.Log("Rendered a fucking frame");
             frameTimer = 0f;
             RequestFrame();
         }
@@ -145,10 +152,12 @@ public class ESP32DisplaySender : MonoBehaviour
     {
         while (serialPort.BytesToRead > 0)
         {
+            Debug.Log("X Check 0");
             int response = serialPort.ReadByte();
 
             if (response >= '0' && response <= '8')
             {
+                Debug.Log("X Check 1");
                 int result = response - '0';
 
                 if (result == 0)

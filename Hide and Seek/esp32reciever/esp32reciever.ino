@@ -103,7 +103,7 @@ bool readExact(uint8_t* buffer, uint32_t length)
 
 void setup()
 {
-    Serial.begin(2000000);
+    Serial.begin(115200);
     Serial.setTimeout(100);
 
     pinMode(TFT_BL, OUTPUT);

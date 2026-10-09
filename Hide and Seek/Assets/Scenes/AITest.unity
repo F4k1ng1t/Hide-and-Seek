@@ -534,8 +534,8 @@ MonoBehaviour:
   width: 480
   height: 320
   jpegQuality: 60
-  portName: COM6
-  baudRate: 2000000
+  portName: COM7
+  baudRate: 115200
   targetFPS: 5
 --- !u!1 &73760819
 GameObject:
