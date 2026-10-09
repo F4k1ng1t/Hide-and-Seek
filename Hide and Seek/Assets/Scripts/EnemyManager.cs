@@ -63,7 +63,6 @@ public class EnemyManager : MonoBehaviour
         enemy.moveThreshold = enemyMoveThreshold;
         enemies.Add(enemy);
     }
-    // Update is called once per frame
     void Update()
     {
         
