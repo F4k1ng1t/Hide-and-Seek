@@ -85,7 +85,7 @@ public class CamController : MonoBehaviour
             RenderTexture.active = previousActive;
         }
     }
-    void ChangeRenderedCamera(Cams camera)
+    public void ChangeRenderedCamera(Cams camera)
     {
         if (currentCam == camera)
         {
@@ -117,16 +117,16 @@ public class CamController : MonoBehaviour
         }
         return cameraList[(int)camera].gameObject.GetComponentInChildren<Light>();
     }
-    public void TurnOnLight(Cams camera)
+    public void TurnOnLight()
     {
         
-        Light light = FindCamLight(camera);
+        Light light = FindCamLight(currentCam);
         light.enabled = true;
     }
-    public void TurnOffLight(Cams camera)
+    public void TurnOffLight()
     {
         
-        Light light = FindCamLight((Cams)camera);
+        Light light = FindCamLight(currentCam);
         light.enabled = false;
     }
     void RotateCamera(Cams camera)
@@ -167,6 +167,7 @@ public class CamController : MonoBehaviour
         if (hasBattery)
         {
             // Camera has battery
+            return;
 
             if (c.Cam1)
             {
