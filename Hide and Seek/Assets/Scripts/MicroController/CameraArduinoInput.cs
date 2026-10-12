@@ -97,9 +97,9 @@ public class CameraArduinoInput: MonoBehaviour
 
     private void ParseLine(string line)
     {
-        try
-        {
+        //Debug.Log("Parse");
             string[] parts = line.Split('|');
+            //Debug.Log(parts[0]);
             switch (int.Parse(parts[0]))
             {
                 case 1:
@@ -133,11 +133,6 @@ public class CameraArduinoInput: MonoBehaviour
             {
                 controller.TurnOffLight();
             }
-        }
-        catch
-        {
-            //no string or string not formated correctly
-        }
         /*
         //This parses their specific code, see arduino. We will need to edit this to match our specific needs
         if (!line.Contains("|"))

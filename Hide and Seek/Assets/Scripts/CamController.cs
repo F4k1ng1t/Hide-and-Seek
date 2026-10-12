@@ -119,23 +119,24 @@ public class CamController : MonoBehaviour
     }
     public void TurnOnLight()
     {
-        
+        Debug.Log("Light On");
         Light light = FindCamLight(currentCam);
         light.enabled = true;
     }
     public void TurnOffLight()
     {
-        
+        Debug.Log("light off");
         Light light = FindCamLight(currentCam);
         light.enabled = false;
     }
-    void RotateCamera(Cams camera)
+    public void RotateCamera(Vector2 RotateInput)
     {
+        Cams camera = currentCam;
         // Prevent trying to rotate if the cameras are currently turned off
         if (camera == Cams.Off || (int)camera >= cameraList.Count) return;
 
-        rotationX -= c.RotateInput.y * sensitivity * Time.deltaTime;
-        rotationY += c.RotateInput.x * sensitivity * Time.deltaTime;
+        rotationX -= RotateInput.y * sensitivity * Time.deltaTime;
+        rotationY += RotateInput.x * sensitivity * Time.deltaTime;
 
         rotationX = Mathf.Clamp(rotationX, -cameraClamp, cameraClamp);
         rotationY = Mathf.Clamp(rotationY, -cameraClamp, cameraClamp);
@@ -143,7 +144,7 @@ public class CamController : MonoBehaviour
         cameraList[(int)camera].transform.localRotation = Quaternion.Euler(rotationX, rotationY, 0f);
     }
 
-    void FireCameraLaser()
+    public void FireCameraLaser()
     {
         if (currentCam == Cams.Off || (int)currentCam >= cameraList.Count) return;
 
@@ -197,16 +198,16 @@ public class CamController : MonoBehaviour
             {
                 if (c.Flashlight && !lightIsOn)
                 {
-                    TurnOnLight(currentCam);
+                    TurnOnLight();
                     lightIsOn = true;
                 }
                 else if (!c.Flashlight && lightIsOn)
                 {
-                    TurnOffLight(currentCam);
+                    TurnOffLight();
                     lightIsOn = false;
                 }
             }
-            RotateCamera(currentCam);
+            RotateCamera(c.RotateInput);
         }
         else
         {

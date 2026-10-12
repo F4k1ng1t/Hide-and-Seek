@@ -3260,6 +3260,69 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676347688}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1703088476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1703088478}
+  - component: {fileID: 1703088477}
+  - component: {fileID: 1703088479}
+  m_Layer: 0
+  m_Name: ArduinoInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1703088477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703088476}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a16cebb260de4d40b4986af3076528d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: COM10
+  baudRate: 9600
+  controller: {fileID: 362187554}
+--- !u!4 &1703088478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703088476}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1703088479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703088476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9dce841ec0d6064eb61ce8bf4b34b6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: COM10
+  baudRate: 9600
+  controller: {fileID: 362187554}
 --- !u!20 &1730184804 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6951232369062764332, guid: 2ac08d5d395057c469323a2d726307ce, type: 3}
@@ -3933,3 +3996,4 @@ SceneRoots:
   - {fileID: 235995868}
   - {fileID: 1342009586}
   - {fileID: 32341522}
+  - {fileID: 1703088478}
