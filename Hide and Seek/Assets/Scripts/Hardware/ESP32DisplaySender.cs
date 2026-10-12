@@ -51,23 +51,23 @@ public class ESP32DisplaySender : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Check 1");
+        //Debug.Log("Check 1");
         if (serialPort == null || !serialPort.IsOpen)
             return;
 
-        Debug.Log("Check 2");
+        //Debug.Log("Check 2");
         if (displayTexture == null)
             return;
 
-        Debug.Log("Check 3");
+        //Debug.Log("Check 3");
         CheckESP32();
 
-        Debug.Log("Waiting: " + waitingForESP32);
-        Debug.Log("readback: " + readbackPending);
+        //Debug.Log("Waiting: " + waitingForESP32);
+        //Debug.Log("readback: " + readbackPending);
         if (waitingForESP32 || readbackPending)
             return;
 
-        Debug.Log("Check 4");
+        //Debug.Log("Check 4");
         frameTimer += Time.deltaTime;
 
         if (frameTimer >= 1f / targetFPS)
@@ -152,12 +152,12 @@ public class ESP32DisplaySender : MonoBehaviour
     {
         while (serialPort.BytesToRead > 0)
         {
-            Debug.Log("X Check 0");
+            //Debug.Log("X Check 0");
             int response = serialPort.ReadByte();
 
             if (response >= '0' && response <= '8')
             {
-                Debug.Log("X Check 1");
+                //Debug.Log("X Check 1");
                 int result = response - '0';
 
                 if (result == 0)
