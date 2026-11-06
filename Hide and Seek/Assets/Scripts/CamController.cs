@@ -85,7 +85,7 @@ public class CamController : MonoBehaviour
             RenderTexture.active = previousActive;
         }
     }
-    void ChangeRenderedCamera(Cams camera)
+    public void ChangeRenderedCamera(Cams camera)
     {
         if (currentCam == camera)
         {
@@ -117,25 +117,26 @@ public class CamController : MonoBehaviour
         }
         return cameraList[(int)camera].gameObject.GetComponentInChildren<Light>();
     }
-    public void TurnOnLight(Cams camera)
+    public void TurnOnLight()
     {
-        
-        Light light = FindCamLight(camera);
+        Debug.Log("Light On");
+        Light light = FindCamLight(currentCam);
         light.enabled = true;
     }
-    public void TurnOffLight(Cams camera)
+    public void TurnOffLight()
     {
-        
-        Light light = FindCamLight((Cams)camera);
+        Debug.Log("light off");
+        Light light = FindCamLight(currentCam);
         light.enabled = false;
     }
-    void RotateCamera(Cams camera)
+    public void RotateCamera(Vector2 RotateInput)
     {
+        Cams camera = currentCam;
         // Prevent trying to rotate if the cameras are currently turned off
         if (camera == Cams.Off || (int)camera >= cameraList.Count) return;
 
-        rotationX -= c.RotateInput.y * sensitivity * Time.deltaTime;
-        rotationY += c.RotateInput.x * sensitivity * Time.deltaTime;
+        rotationX -= RotateInput.y * sensitivity * Time.deltaTime;
+        rotationY += RotateInput.x * sensitivity * Time.deltaTime;
 
         rotationX = Mathf.Clamp(rotationX, -cameraClamp, cameraClamp);
         rotationY = Mathf.Clamp(rotationY, -cameraClamp, cameraClamp);
@@ -143,7 +144,7 @@ public class CamController : MonoBehaviour
         cameraList[(int)camera].transform.localRotation = Quaternion.Euler(rotationX, rotationY, 0f);
     }
 
-    void FireCameraLaser()
+    public void FireCameraLaser()
     {
         if (currentCam == Cams.Off || (int)currentCam >= cameraList.Count) return;
 
@@ -167,6 +168,7 @@ public class CamController : MonoBehaviour
         if (hasBattery)
         {
             // Camera has battery
+            return;
 
             if (c.Cam1)
             {
@@ -196,16 +198,16 @@ public class CamController : MonoBehaviour
             {
                 if (c.Flashlight && !lightIsOn)
                 {
-                    TurnOnLight(currentCam);
+                    TurnOnLight();
                     lightIsOn = true;
                 }
                 else if (!c.Flashlight && lightIsOn)
                 {
-                    TurnOffLight(currentCam);
+                    TurnOffLight();
                     lightIsOn = false;
                 }
             }
-            RotateCamera(currentCam);
+            RotateCamera(c.RotateInput);
         }
         else
         {

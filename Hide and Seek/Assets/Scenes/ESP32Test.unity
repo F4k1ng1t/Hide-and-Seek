@@ -410,8 +410,8 @@ MonoBehaviour:
   width: 480
   height: 320
   jpegQuality: 24
-  portName: COM6
-  baudRate: 2000000
+  portName: COM7
+  baudRate: 115200
   targetFPS: 10
 --- !u!4 &655589806
 Transform:
