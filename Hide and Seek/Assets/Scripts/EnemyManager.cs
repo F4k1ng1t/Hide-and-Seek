@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -67,5 +69,16 @@ public class EnemyManager : MonoBehaviour
     {
         
     }
-    
+
+    public void Lose()
+    {
+        gameObject.GetComponent<AudioSource>().Play();
+        StartCoroutine(LoadLoseScene());
+    }
+
+    private IEnumerator LoadLoseScene()
+    {
+        yield return new WaitForSeconds(3f); //however long it takes to get through the other stuff
+        SceneManager.LoadScene("Lose");
+    }
 }

@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour
     {
         //Jumpscare functionality
         //Debug.Log("GRAHHHHH");
+        FindAnyObjectByType<EnemyManager>().Lose();
     }
     void UpdateEnemyPosition()
     {
